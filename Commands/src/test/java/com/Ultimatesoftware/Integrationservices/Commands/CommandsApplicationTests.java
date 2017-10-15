@@ -1,4 +1,4 @@
-package com.Ultimatesoftware.IntegrationServices.Commands;
+package com.Ultimatesoftware.Integrationservices.Commands;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

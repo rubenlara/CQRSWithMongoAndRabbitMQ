@@ -1,7 +1,6 @@
-package com.Ultimatesoftware.IntegrationServices.Commands.Web;
+package com.Ultimatesoftware.Integrationservices.Commands.Web;
 
-import com.Ultimatesoftware.IntegrationServices.Commands.Api.CreateIntegrationCommand;
-import com.rabbitmq.client.Command;
+import com.Ultimatesoftware.Integrationservices.Api.CreateIntegrationCommand;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +21,7 @@ public class IntegrationCommandController {
     }
     @PostMapping
     public CompletableFuture<String> CreateIntegration(@RequestBody Map<String, String> request){
-        return commandGateway.send(new CreateIntegrationCommand(request.get("integrationid"),
+        return commandGateway.send(new CreateIntegrationCommand(request.get("integrationId"),
                 request.get("integrationName"), request.get("partner")));
     }
 }

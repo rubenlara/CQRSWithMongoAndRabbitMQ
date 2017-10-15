@@ -1,8 +1,8 @@
-package com.Ultimatesoftware.IntegrationServices.Commands;
+package com.Ultimatesoftware.Integrationservices.Commands;
 
 
-import com.Ultimatesoftware.IntegrationServices.Commands.Api.CreateIntegrationCommand;
-import com.Ultimatesoftware.IntegrationServices.Commands.Api.IntegrationCreatedEvent;
+import com.Ultimatesoftware.Integrationservices.Api.CreateIntegrationCommand;
+import com.Ultimatesoftware.Integrationservices.Api.IntegrationCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;

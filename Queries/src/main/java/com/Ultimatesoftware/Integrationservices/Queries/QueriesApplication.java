@@ -1,4 +1,4 @@
-package com.Ultimatesoftware.IntegrationServices.Queries;
+package com.Ultimatesoftware.Integrationservices.Queries;
 
 import com.rabbitmq.client.Channel;
 import org.axonframework.amqp.eventhandling.DefaultAMQPMessageConverter;
@@ -14,7 +14,9 @@ import org.springframework.amqp.core.Message;
 public class QueriesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(QueriesApplication.class, args);
+
+	    SpringApplication.run(QueriesApplication.class, args);
+	    System.out.println("System intialized");
 	}
 
 	@Bean

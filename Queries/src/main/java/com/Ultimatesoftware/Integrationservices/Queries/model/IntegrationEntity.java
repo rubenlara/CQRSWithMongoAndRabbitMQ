@@ -1,9 +1,11 @@
-package com.Ultimatesoftware.IntegrationServices.Queries.model;
+package com.Ultimatesoftware.Integrationservices.Queries.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
+@Document
 public class IntegrationEntity {
     @Id
     private String id;

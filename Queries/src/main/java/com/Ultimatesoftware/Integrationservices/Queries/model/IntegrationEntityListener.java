@@ -1,16 +1,20 @@
-package com.Ultimatesoftware.IntegrationServices.Queries.model;
+package com.Ultimatesoftware.Integrationservices.Queries.model;
 
-import com.Ultimatesoftware.IntegrationServices.Queries.Api.IntegrationCreatedEvent;
+import com.Ultimatesoftware.Integrationservices.Api.IntegrationCreatedEvent;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.Console;
-
+@ProcessingGroup("Integration")
 @Component
 public class IntegrationEntityListener {
 
     private IntegrationRepository repository;
+
+    public IntegrationEntityListener(){
+
+    }
 
     @Autowired
     public IntegrationEntityListener(IntegrationRepository repository){
@@ -19,6 +23,7 @@ public class IntegrationEntityListener {
 
     @EventHandler
     public void on(IntegrationCreatedEvent event){
+        System.out.println("Event been raised.");
         repository.save(new IntegrationEntity(event.getIntegrationId(), event.getIntegrationName(), event.getPartner()));
     }
 }

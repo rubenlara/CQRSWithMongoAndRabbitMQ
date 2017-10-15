@@ -1,7 +1,7 @@
-package com.Ultimatesoftware.IntegrationServices.Commands.Api
+package com.Ultimatesoftware.Integrationservices.Api;
 
 
-import org.axonframework.commandhandling.TargetAggregateIdentifier
+import org.axonframework.commandhandling.TargetAggregateIdentifier;
 
 class CreateIntegrationCommand(@TargetAggregateIdentifier val integrationId: String, val integrationName: String, val partner: String)
 

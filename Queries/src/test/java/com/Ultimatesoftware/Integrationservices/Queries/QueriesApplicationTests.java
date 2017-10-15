@@ -1,4 +1,4 @@
-package com.Ultimatesoftware.IntegrationServices.Queries;
+package com.Ultimatesoftware.Integrationservices.Queries;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

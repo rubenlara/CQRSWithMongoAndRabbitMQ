@@ -1,6 +1,5 @@
-package com.Ultimatesoftware.IntegrationServices.Commands;
+package com.Ultimatesoftware.Integrationservices.Commands;
 
-import org.axonframework.spring.config.EnableAxon;
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

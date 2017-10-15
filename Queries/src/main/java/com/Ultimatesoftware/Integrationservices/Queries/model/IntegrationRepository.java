@@ -1,4 +1,4 @@
-package com.Ultimatesoftware.IntegrationServices.Queries.model;
+package com.Ultimatesoftware.Integrationservices.Queries.model;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

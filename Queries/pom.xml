@@ -91,6 +91,11 @@
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.axonframework</groupId>
+            <artifactId>axon-spring-boot-autoconfigure</artifactId>
+            <version>3.0.6</version>
+        </dependency>
     </dependencies>
 
 	<build>
