@@ -1,31 +1,27 @@
 package com.ultimatesoftware.integrationservices.Commands.config;
 
 import com.mongodb.MongoClient;
-import com.mongodb.ServerAddress;
+import com.mongodb.MongoClientURI;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.mongo.eventsourcing.eventstore.DefaultMongoTemplate;
 import org.axonframework.mongo.eventsourcing.eventstore.MongoEventStorageEngine;
-import org.axonframework.mongo.eventsourcing.eventstore.MongoFactory;
 import org.axonframework.mongo.eventsourcing.eventstore.MongoTemplate;
 import org.axonframework.mongo.eventsourcing.eventstore.documentperevent.DocumentPerEventStorageStrategy;
 import org.axonframework.serialization.Serializer;
 import org.axonframework.serialization.json.JacksonSerializer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Arrays;
+import org.springframework.core.env.Environment;
 
 @Configuration
 public class AxonConfig {
 
-    @Value("${mongodb.url}")
-    private String mongoUrl;
+    @Value("${mongodb.default.uri}")
+    private String mongohost;
 
-    @Value("${mongodb.port}")
-    private int mongoPort;
-
-    @Value("${mongodb.dbname}")
+    @Value("${mongodb.default.databaseName}")
     private String mongoDbName;
 
     @Value("${mongodb.events.collection.name}")
@@ -34,27 +30,38 @@ public class AxonConfig {
     @Value("${mongodb.events.snapshot.collection.name}")
     private String snapshotCollectionName;
 
+    @Autowired
+    private Environment environment;
+
     @Bean
     public Serializer axonJsonSerializer() {
         return new JacksonSerializer();
     }
 
+
     @Bean
     public EventStorageEngine eventStorageEngine(){
+//        Map<String, Object> map = new HashMap();
+//        for(Iterator it = ((AbstractEnvironment) environment).getPropertySources().iterator(); it.hasNext(); ) {
+//            PropertySource propertySource = (PropertySource) it.next();
+//            if (propertySource instanceof MapPropertySource) {
+//                map.putAll(((MapPropertySource) propertySource).getSource());
+//            }
+//        }
+//        System.out.println(map);
         return new MongoEventStorageEngine(
                 axonJsonSerializer(),null, axonMongoTemplate(), new DocumentPerEventStorageStrategy());
     }
 
     @Bean(name = "axonMongoTemplate")
     public MongoTemplate axonMongoTemplate() {
-        MongoTemplate template = new DefaultMongoTemplate(mongoClient(), mongoDbName, eventsCollectionName, snapshotCollectionName);
+        MongoTemplate template = new DefaultMongoTemplate(mongoClient(), mongoDbName, "domainevents", "snapshotevents");
         return template;
     }
 
     @Bean
     public MongoClient mongoClient(){
-        MongoFactory mongoFactory = new MongoFactory();
-        mongoFactory.setMongoAddresses(Arrays.asList(new ServerAddress(mongoUrl + ":" + mongoPort)));
-        return mongoFactory.createMongo();
+        MongoClientURI uri = new MongoClientURI(mongohost);
+        return new MongoClient(uri);
     }
 }

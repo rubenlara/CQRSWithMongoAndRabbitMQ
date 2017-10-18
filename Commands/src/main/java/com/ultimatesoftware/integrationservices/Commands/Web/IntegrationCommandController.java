@@ -1,6 +1,6 @@
 package com.ultimatesoftware.integrationservices.Commands.Web;
 
-import com.ultimatesoftware.integrationservices.api.CreateIntegrationCommand;
+import com.ultimatesoftware.integrationservices.kotlin.CreateIntegrationCommand;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

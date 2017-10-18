@@ -1,4 +1,4 @@
-package com.ultimatesoftware.integrationservices.api;
+package com.ultimatesoftware.integrationservices.kotlin
 
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 

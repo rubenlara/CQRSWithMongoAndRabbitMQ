@@ -1,0 +1,25 @@
+applications:
+- name: TurkeyService-Commands
+  memory: 512M
+  disk_quota: 256M
+  path: target/Commands-0.0.1-SNAPSHOT.jar
+  instances: 1
+  timeout: 120
+  services:
+    - TurnKey-Mongo
+    - TurnKeyRabbitMQ
+    #- Turnkey-ServiceRegistery
+  env:
+      JAVA_OPTS: -Djava.security.egd=file:/dev/./urandom # -Ddebug
+      JBP_CONFIG_CONTAINER_CERTIFICATE_TRUST_STORE: "{enabled: true}"
+      JBP_CONFIG_OPEN_JDK_JRE: >
+           {
+                memory_calculator: {
+                    memory_sizes: {
+                        stack: 228k..228k,
+                        heap: 64m..128m,
+                        metaspace: 128m
+                    }
+                }
+           }
+  buildpack: java_buildpack_offline

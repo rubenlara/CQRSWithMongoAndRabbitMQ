@@ -1,14 +1,12 @@
 package com.ultimatesoftware.integrationservices.Commands;
 
-import com.ultimatesoftware.integrationservices.api.CreateIntegrationCommand;
-import com.ultimatesoftware.integrationservices.api.IntegrationCreatedEvent;
+import com.ultimatesoftware.integrationservices.kotlin.CreateIntegrationCommand;
+import com.ultimatesoftware.integrationservices.kotlin.IntegrationCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
-
 import java.util.Date;
-
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
 @Aggregate
