@@ -1,7 +1,10 @@
-package com.ultimatesoftware.integrationservices.Commands;
+package com.ultimatesoftware.integrationservices.Commands.Integration;
 
 import com.ultimatesoftware.integrationservices.api.CreateIntegrationCommand;
 import com.ultimatesoftware.integrationservices.api.IntegrationCreatedEvent;
+import com.ultimatesoftware.integrationservices.api.IntegrationUpdatedEvent;
+import com.ultimatesoftware.integrationservices.api.UpdateIntegrationCommand;
+import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -12,6 +15,7 @@ import java.util.Date;
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
 @Aggregate
+@NoArgsConstructor
 public class Integration {
     @AggregateIdentifier
     private String id;
@@ -93,11 +97,9 @@ public class Integration {
         this.partner = partner;
     }
 
-    @SuppressWarnings("unused")
-    private Integration(){}
-
     @CommandHandler
     public Integration(CreateIntegrationCommand command){
+        System.out.println("Create handler been called");
         apply(new IntegrationCreatedEvent(command.getIntegrationId(), command.getIntegrationName(), command.getPartner()));
     }
 
@@ -106,5 +108,16 @@ public class Integration {
         this.id = event.getIntegrationId();
         this.name = event.getIntegrationName();
         this.partner = event.getPartner();
+    }
+
+    @CommandHandler
+    public void handleUpdate(UpdateIntegrationCommand command){
+        System.out.println("Update handler been called");
+        apply(new IntegrationUpdatedEvent(command.getIntegrationId(), command.getIntegrationName()));
+    }
+
+    @EventSourcingHandler
+    public void onUpdatedEvent(IntegrationUpdatedEvent event){
+        this.name = event.getIntegrationName();
     }
 }

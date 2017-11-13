@@ -1,5 +1,7 @@
 package com.ultimatesoftware.integrationservices.Commands.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.module.kotlin.KotlinModule;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
@@ -36,7 +38,7 @@ public class AxonConfig {
 
     @Bean
     public Serializer axonJsonSerializer() {
-        return new JacksonSerializer();
+        return new JacksonSerializer(new ObjectMapper().registerModule(new KotlinModule()));
     }
 
     @Bean
